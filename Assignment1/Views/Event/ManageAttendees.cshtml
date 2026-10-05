@@ -1,0 +1,41 @@
+﻿@model Assignment1.Models.Event
+@{
+    ViewData["Title"] = "Manage Attendees";
+}
+
+<h1>Manage Attendees</h1>
+<h2>@Model.Title</h2>
+<h3>Signup</h3>
+
+<form asp-controller="Event" asp-action="ManageAttendees" asp-route-id="@Model.Id" method="post">
+    <div class="mb-3">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Signup</button>
+
+</form>
+
+<hr />
+
+<h3>Attendees</h3>
+
+@if (Model.Attendees.Count == 0)
+{
+    <p>No attendees have signed up yet.</p>
+}
+else
+{
+    <ul>
+        @foreach (var attendee in Model.Attendees)
+        {
+            <li>@attendee.Name - @attendee.Email</li>
+        }
+    </ul>
+}
