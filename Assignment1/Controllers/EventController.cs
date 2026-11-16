@@ -43,10 +43,6 @@ namespace Assignment1.Controllers
         {
             Event? selectedEvent = events.FirstOrDefault(e => e.Id == id);
 
-            if (selectedEvent == null)
-            {
-                return NotFound();
-            }
             ViewData["Title"] = "Manage Attendees";
 
             return View(selectedEvent);
@@ -58,11 +54,6 @@ namespace Assignment1.Controllers
         public IActionResult ManageAttendees(int id, string name, string email)
         {
             Event? selectedEvent = events.FirstOrDefault(e => e.Id == id);
-
-            if (selectedEvent == null)
-            {
-                return NotFound();
-            }
 
             Attendee attendee = new Attendee
             {
